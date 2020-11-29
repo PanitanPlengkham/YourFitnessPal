@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -24,7 +25,7 @@ SECRET_KEY = 'rdymj7s@okjgkpu-ob*sezbvhyu2&0!tvz9s=jzjv#paogxu-j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourfitnesspal.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -119,6 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_REDIRECT_URL = 'fitnesspal:index'
 LOGOUT_REDIRECT_URL = 'fitnesspal:index'
+
+django_heroku.settings(locals())
